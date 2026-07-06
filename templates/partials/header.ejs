@@ -1,0 +1,35 @@
+<header class="header">
+  <div class="header__logo">
+    <a href="/">
+      <img class="logotype" src="/media/filmix-logo.png" alt="Логотип" />
+    </a>
+  </div>
+  <nav class="header__nav">
+    <ul class="nav-list">
+      <li>
+        <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Главная</a>
+      </li>
+      <li>
+        <a href="/favourites" class="<%= currentPath === '/favourites' ? 'active' : '' %>">Избранное</a>
+      </li>
+      <li>
+        <a href="/movie" class="<%= currentPath.startsWith('/movie') ? 'active' : '' %>">Фильмы</a>
+      </li>
+
+      <% if (user) { %>
+        <li class="user-menu">
+          <div class="user-profile" onclick="if(confirm('Выйти из аккаунта?')) location.href='/auth/logout'">
+            <div class="user-avatar">
+              <%= user.username.charAt(0).toUpperCase() %>
+            </div>
+            <span class="user-name-text"><%= user.username %></span>
+          </div>
+        </li>
+      <% } else { %>
+        <li>
+          <a href="/auth/registration" class="<%= currentPath === '/auth/registration' ? 'active' : '' %>">Регистрация</a>
+        </li>
+      <% } %>
+    </ul>
+  </nav>
+</header>

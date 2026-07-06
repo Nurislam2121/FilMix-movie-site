@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Логин | Filmix</title>
+
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/registration.css" />
+  </head>
+  <body>
+    <main class="registration-container">
+      <h1>Вход в аккаунт</h1>
+      
+      <div class="registration-card">
+        <% if (error && error.length > 0) { %>
+          <div class="alert alert-error">
+            <%= error %>
+          </div>
+        <% } %>
+
+        <% if (success && success.length > 0) { %>
+          <div class="alert alert-success">
+            <%= success %>
+          </div>
+        <% } %>
+
+        <form class="registration-form" action="/auth/login" method="POST">
+          <label for="email">Почта</label>
+          <input 
+            name="email" 
+            id="email"
+            class="user-email" 
+            type="email" 
+            placeholder="Введите почту" 
+            required
+          />
+
+          <label for="password">Пароль</label>
+          <input 
+            name="password" 
+            id="password"
+            class="user-password" 
+            type="password" 
+            placeholder="Введите пароль" 
+            required
+          />
+
+          <button type="submit" class="registration-button base-button">Продолжить</button>
+        </form>
+
+        <div class="account-link">
+          <span>Нет аккаунта? <b><a class="login-link" href="/auth/registration">Регистрация</a></b></span>
+          <b><a class="login-link" href="#">Забыли пароль?</a></b>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/admin.css">
+
+<main class="admin-container">
+    <div class="admin-header">
+        <h1>Модерация рецензий</h1>
+        <a href="/admin" class="base-button">Назад в панель</a>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Фильм</th>
+                    <th>Пользователь</th>
+                    <th>Текст</th>
+                    <th>Дата</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% reviews.forEach(review => { %>
+                    <tr>
+                        <td><strong><%= review.movie_title %></strong></td>
+                        <td><%= review.username %></td>
+                        <td style="max-width: 400px; font-style: italic;">"<%= review.review_text %>"</td>
+                        <td><%= new Date(review.created_at).toLocaleDateString() %></td>
+                        <td>
+                            <form action="/admin/reviews/delete/<%= review.id %>" method="POST">
+                                <button type="submit" class="btn-small btn-danger" onclick="return confirm('Удалить этот отзыв?')">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</main>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Избранное</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/base.css" />
+    <link rel="stylesheet" href="../static/css/favourites.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo">
+        <a href="#">
+          <img
+            class="logotype"
+            src="../static/media/filmix-logo.png"
+            alt="Логотип"
+          />
+        </a>
+      </div>
+      <nav class="header__nav">
+        <ul class="nav-list">
+          <li><a href="#">Главная</a></li>
+          <li><a href="#">Избранное</a></li>
+          <li><a href="#">Фильмы</a></li>
+          <li><a href="#">Логин</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="filters-section">
+      <form id="movie-filters-form" class="filters-form">
+        <div class="filters-block filters-block--search">
+          <h2 class="filters-block__title">Поиск</h2>
+          <div class="search-wrapper">
+            <input
+              type="text"
+              name="query"
+              class="search-input"
+              placeholder="Введите название фильма"
+              autocomplete="off"
+            />
+            <button type="submit" class="btn btn--primary base-button">
+              Искать
+            </button>
+          </div>
+        </div>
+
+        <div class="filters-block filters-block--filter">
+          <h2 class="filters-block__title">Фильтр</h2>
+
+          <div class="filter-fields">
+            <div class="filter-field">
+              <input
+                type="text"
+                name="genres"
+                class="filter-input"
+                placeholder="Жанры"
+                readonly
+                data-filter="genre"
+              />
+            </div>
+
+            <div class="filter-field">
+              <input
+                type="text"
+                name="years"
+                class="filter-input"
+                placeholder="Годы"
+                readonly
+                data-filter="year"
+              />
+            </div>
+
+            <div class="filter-field">
+              <input
+                input
+                type="text"
+                name="countries"
+                class="filter-input"
+                placeholder="Страны"
+                readonly
+                data-filter="country"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="filters-block filters-block--bottom">
+          <div class="sort-wrapper">
+            <h2 class="filters-block__title">Сортировка</h2>
+
+            <div class="custom-select-wrapper">
+              <select name="sort" class="sort-select" id="sort-select">
+                <option value="" disabled selected>Сортировать по</option>
+                <option value="title-asc">Название ⬇</option>
+                <option value="title-desc">Название ⬆</option>
+                <option value="year-desc">Год ⬇</option>
+                <option value="year-asc">Год ⬆</option>
+                <option value="rating-desc">Рейтинг ⬇</option>
+                <option value="rating-asc">Рейтинг ⬆</option>
+              </select>
+              <div class="custom-select-arrow"></div>
+            </div>
+          </div>
+
+          <button type="reset" class="btn btn--reset base-button">
+            Сбросить фильтр
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="all-movies">
+      <h2>Все Фильмы</h2>
+      <div class="all-movies__container film-container">
+        <article class="all-movies__card film-card">
+          <img src="../static/media/cardImage.jpg" alt="cardImage" />
+          <div class="all-movies__description film-description">
+            <h4 class="all-movies__title-film film-title">Uncharted</h4>
+            <div class="all-movies__date-category year-genre">
+              <p class="all-movies__date film-year">2025</p>
+              <p class="all-movies__category film-genre">Фантастика</p>
+            </div>
+            <button class="all-movies__btn base-button film-btn">
+              Подробнее
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="empty">
+      <div class="empty__container">
+        <svg
+          width="400"
+          height="400"
+          viewBox="0 0 500 500"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <rect width="500" height="500" fill="url(#pattern0_107_26)" />
+          <defs>
+            <pattern
+              id="pattern0_107_26"
+              patternContentUnits="objectBoundingBox"
+              width="1"
+              height="1"
+            >
+              <use xlink:href="#image0_107_26" transform="scale(0.00390625)" />
+            </pattern>
+            <image
+              id="image0_107_26"
+              width="256"
+              height="256"
+              preserveAspectRatio="none"
+              xlink:href="data:image/png;base64,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"
+            />
+          </defs>
+        </svg>
+        <h3 class="empty__description">Вы ещё ничего не добавили — самое время выбрать любимый фильм!</h3>
+        <button class="empty__button base-button">Посмотреть фильмы</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__logo">
+        <a href="#">
+          <img class="logotype" src="../static/media/filmix-logo.png" alt="Logotype" />
+        </a>
+      </div>
+      <nav class="footer__nav">
+        <ul class="nav-list">
+          <li>
+            <a class="social-link" href="#"><svg width="60" height="60" viewBox="0 0 60 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M42 18.9033L37.4919 42.4384C37.4919 42.4384 36.8611 44.0702 35.1283 43.2876L24.7269 35.0289L24.6786 35.0045C26.0836 33.6981 36.9786 23.554 37.4548 23.0942C38.1919 22.382 37.7343 21.9581 36.8784 22.496L20.7852 33.0795L14.5765 30.9161C14.5765 30.9161 13.5994 30.5562 13.5054 29.7737C13.4102 28.9898 14.6086 28.5658 14.6086 28.5658L39.9197 18.2834C39.9197 18.2834 42 17.3369 42 18.9033Z" fill="currentColor"/>
+</svg></a>
+          </li>
+          <li>
+            <a class="social-link" href="#"><svg width="60" height="60" viewBox="0 0 60 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M30 17.7108C33.9759 17.7108 34.5181 17.7108 36.1446 17.7108C37.5904 17.7108 38.3133 18.0723 38.8554 18.253C39.5783 18.6145 40.1205 18.7952 40.6627 19.3374C41.2048 19.8795 41.5663 20.4217 41.747 21.1446C41.9277 21.6867 42.1084 22.4096 42.2892 23.8554C42.2892 25.4819 42.2892 25.8434 42.2892 30C42.2892 34.1566 42.2892 34.5181 42.2892 36.1446C42.2892 37.5904 41.9277 38.3133 41.747 38.8554C41.3855 39.5783 41.2048 40.1205 40.6627 40.6627C40.1205 41.2048 39.5783 41.5663 38.8554 41.747C38.3133 41.9277 37.5904 42.1084 36.1446 42.2892C34.5181 42.2892 34.1566 42.2892 30 42.2892C25.8434 42.2892 25.4819 42.2892 23.8554 42.2892C22.4096 42.2892 21.6867 41.9277 21.1446 41.747C20.4217 41.3855 19.8795 41.2048 19.3374 40.6627C18.7952 40.1205 18.4337 39.5783 18.253 38.8554C18.0723 38.3133 17.8916 37.5904 17.7108 36.1446C17.7108 34.5181 17.7108 34.1566 17.7108 30C17.7108 25.8434 17.7108 25.4819 17.7108 23.8554C17.7108 22.4096 18.0723 21.6867 18.253 21.1446C18.6145 20.4217 18.7952 19.8795 19.3374 19.3374C19.8795 18.7952 20.4217 18.4337 21.1446 18.253C21.6867 18.0723 22.4096 17.8916 23.8554 17.7108C25.4819 17.7108 26.0241 17.7108 30 17.7108ZM30 15C25.8434 15 25.4819 15 23.8554 15C22.2289 15 21.1446 15.3614 20.241 15.7229C19.3374 16.0843 18.4337 16.6265 17.5301 17.5301C16.6265 18.4337 16.2651 19.1566 15.7229 20.241C15.3614 21.1446 15.1807 22.2289 15 23.8554C15 25.4819 15 26.0241 15 30C15 34.1566 15 34.5181 15 36.1446C15 37.7711 15.3614 38.8554 15.7229 39.759C16.0843 40.6627 16.6265 41.5663 17.5301 42.4699C18.4337 43.3735 19.1566 43.7349 20.241 44.2771C21.1446 44.6386 22.2289 44.8193 23.8554 45C25.4819 45 26.0241 45 30 45C33.9759 45 34.5181 45 36.1446 45C37.7711 45 38.8554 44.6386 39.759 44.2771C40.6627 43.9157 41.5663 43.3735 42.4699 42.4699C43.3735 41.5663 43.7349 40.8434 44.2771 39.759C44.6386 38.8554 44.8193 37.7711 45 36.1446C45 34.5181 45 33.9759 45 30C45 26.0241 45 25.4819 45 23.8554C45 22.2289 44.6386 21.1446 44.2771 20.241C43.9157 19.3374 43.3735 18.4337 42.4699 17.5301C41.5663 16.6265 40.8434 16.2651 39.759 15.7229C38.8554 15.3614 37.7711 15.1807 36.1446 15C34.5181 15 34.1566 15 30 15Z" fill="white"/>
+<path d="M30 22.2289C25.6627 22.2289 22.2289 25.6627 22.2289 30C22.2289 34.3374 25.6627 37.7711 30 37.7711C34.3374 37.7711 37.7711 34.3374 37.7711 30C37.7711 25.6627 34.3374 22.2289 30 22.2289ZM30 35.0602C27.2892 35.0602 24.9398 32.8916 24.9398 30C24.9398 27.2892 27.1084 24.9398 30 24.9398C32.7108 24.9398 35.0602 27.1084 35.0602 30C35.0602 32.7108 32.7108 35.0602 30 35.0602Z" fill="currentColor"/>
+<path d="M37.9518 23.8554C38.9499 23.8554 39.759 23.0463 39.759 22.0482C39.759 21.0501 38.9499 20.241 37.9518 20.241C36.9537 20.241 36.1446 21.0501 36.1446 22.0482C36.1446 23.0463 36.9537 23.8554 37.9518 23.8554Z" fill="white"/>
+</svg>
+</a>
+          </li>
+          <li>
+            <a class="social-link" href="#"><svg width="60" height="60" viewBox="0 0 60 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M32.4856 30.5472H38.0689L38.9455 24.8408H32.4845V21.722C32.4845 19.3515 33.2544 17.2494 35.4584 17.2494H39V12.2696C38.3777 12.1851 37.0617 12 34.5749 12C29.3823 12 26.338 14.7589 26.338 21.0446V24.8408H21V30.5472H26.338V46.2315C27.3952 46.3915 28.4659 46.5 29.5651 46.5C30.5587 46.5 31.5284 46.4086 32.4856 46.2784V30.5472Z" fill="currentColor"/>
+</svg>
+</a>
+          </li>
+          <li>
+            <a class="social-link" href="#"><svg width="60" height="60" viewBox="0 0 60 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M41.8902 18.0937C38.9268 15.1406 34.9756 13.5 30.8049 13.5C22.1341 13.5 15.1098 20.5 15.1098 29.1406C15.1098 31.875 15.878 34.6094 17.1951 36.9062L15 45L23.3415 42.8125C25.6463 44.0156 28.1707 44.6719 30.8049 44.6719C39.4756 44.6719 46.5 37.6719 46.5 29.0313C46.3902 24.9844 44.8537 21.0469 41.8902 18.0937ZM38.378 34.7187C38.0488 35.5937 36.5122 36.4687 35.7439 36.5781C35.0854 36.6875 34.2073 36.6875 33.3293 36.4688C32.7805 36.25 32.0122 36.0312 31.1341 35.5938C27.1829 33.9531 24.6585 30.0156 24.439 29.6875C24.2195 29.4687 22.7927 27.6094 22.7927 25.6406C22.7927 23.6719 23.7805 22.7969 24.1098 22.3594C24.439 21.9219 24.878 21.9219 25.2073 21.9219C25.4268 21.9219 25.7561 21.9219 25.9756 21.9219C26.1951 21.9219 26.5244 21.8125 26.8537 22.5781C27.1829 23.3437 27.9512 25.3125 28.061 25.4219C28.1707 25.6406 28.1707 25.8594 28.061 26.0781C27.9512 26.2969 27.8415 26.5156 27.6219 26.7344C27.4024 26.9531 27.1829 27.2812 27.0732 27.3906C26.8537 27.6094 26.6341 27.8281 26.8537 28.1562C27.0732 28.5937 27.8415 29.7969 29.0488 30.8906C30.5854 32.2031 31.7927 32.6406 32.2317 32.8594C32.6707 33.0781 32.8902 32.9687 33.1098 32.75C33.3293 32.5312 34.0976 31.6562 34.3171 31.2188C34.5366 30.7812 34.8659 30.8906 35.1951 31C35.5244 31.1094 37.5 32.0938 37.8293 32.3125C38.2683 32.5312 38.4878 32.6406 38.5976 32.75C38.7073 33.0781 38.7073 33.8437 38.378 34.7187Z" fill="currentColor"/>
+</svg>
+</a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>

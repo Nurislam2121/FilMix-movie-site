@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= film.title %> — Filmix</title>
+
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/movie-details.css" />
+</head>
+<body>
+    
+    <%- include('partials/header') %>
+
+    <section class="movie">
+        <div class="movie__poster">
+            <img  src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>" alt="<%= film.title %>">
+        </div>
+        <div class="movie__details">
+            <h2 class="movie-details__title"><%= film.title %></h2>
+            
+            <div class="movie-details__short-info">
+                <span class="info__release-date">
+                    <%= film.release_date ? new Date(film.release_date).toLocaleDateString('ru-RU') : 'Дата неизвестна' %>
+                </span>
+                <span class="info__separator">·</span>
+                <span class="info__genres"><%= film.genres %></span>
+                <span class="info__separator">·</span>
+                <span class="info__rating"><strong><%= film.vote_average %> TMDB</strong></span>
+            </div>
+
+            <div class="movie-details__action">
+    <button class="favourite-button base-button <%= isFavorite ? 'is-active' : '' %>" id="addToFav" data-id="<%= film.id %>">
+        <svg width="32" height="39" viewBox="0 0 32 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.66683 3.25H25.3335C26.0699 3.25 26.6668 3.97754 26.6668 4.875V35.9829C26.6668 36.4315 26.3683 36.7955 26.0002 36.7955C25.875 36.7955 25.7522 36.7523 25.646 36.6712L16.0002 29.3009L6.35428 36.6712C6.04234 36.9096 5.63091 36.7947 5.43532 36.4145C5.36879 36.2851 5.3335 36.1356 5.3335 35.9829V4.875C5.3335 3.97754 5.93046 3.25 6.66683 3.25Z" 
+            fill="<%= isFavorite ? '#ff4d4d' : 'white' %>" id="favPath"/>
+        </svg>
+    </button>
+    <button id="openTrailer" class="trailer-button base-button">Посмотреть трейлер</button>
+
+<% if (trailerKey) { %>
+<div id="trailerModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="video-container">
+            <iframe id="trailerPlayer" 
+                src="" 
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>
+<% } %>
+</div>
+
+            <div class="movie-details__metadata">
+    <div class="metadata__first">
+        <span><strong>Режиссёр:</strong> <%= director %></span>
+        
+        <span><strong>Страна:</strong> 
+            <%= extra.production_countries && extra.production_countries.length > 0 
+                ? extra.production_countries.map(c => c.name).join(', ') 
+                : 'Не указана' %>
+        </span>
+
+        <span><strong>Возраст:</strong> 
+            <%= extra.adult ? '18+' : '12+' %> </span>
+    </div>
+
+    <div class="metadata__second"> 
+        <span><strong>Бюджет:</strong> 
+            <%= extra.budget > 0 ? '$' + extra.budget.toLocaleString('ru-RU') : 'Неизвестен' %>
+        </span>
+
+        <span><strong>Сборы в мире:</strong> 
+            <%= extra.revenue > 0 ? '$' + extra.revenue.toLocaleString('ru-RU') : 'Неизвестны' %>
+        </span>
+
+        <span><strong>Слоган:</strong> 
+            <em><%= extra.tagline ? '' + extra.tagline + '' : '—' %></em>
+        </span>
+    </div>
+</div>
+
+            <h2 class="movie-details__info-title">Обзор</h2>
+            <span class="movie-details__info-description">
+                <%= film.overview || "Описание временно отсутствует." %>
+            </span>
+        </div>
+    </section> 
+
+    <section class="movie-cast">
+    <h2 class="movie-cast__title">В главных ролях</h2>
+    <div class="movie-cast__container film-carousel">
+        <% if (cast && cast.length > 0) { %>
+            <% cast.forEach(actor => { %>
+                <article class="cast-member">
+                    <img class="cast-image" 
+                         src="<%= actor.profile_path ? 'https://image.tmdb.org/t/p/w185' + actor.profile_path : '/media/no-avatar.png' %>" 
+                         alt="<%= actor.name %>">
+                    
+                    <div class="cast-role">
+                        <span class="cast-name"><%= actor.name %></span>
+                        <p class="role-name"><%= actor.character %></p>
+                    </div>
+                </article>
+            <% }) %>
+        <% } else { %>
+            <p style="color: #888; padding: 20px;">Информация об актерах отсутствует</p>
+        <% } %>
+    </div>
+</section>
+
+<section class="reviews">
+    <h2 class="reviews__title">Рецензии зрителей</h2>
+    
+    <% if (user) { %>
+        <form class="reviews__form" action="/movie/<%= film.id %>/review" method="POST">
+            <div class="user-avatar" style="width: 40px; height: 40px; font-size: 16px; flex-shrink: 0;">
+                <%= user.username[0].toUpperCase() %>
+            </div>
+            <input 
+                class="reviews__input" 
+                name="review_text" 
+                type="text" 
+                placeholder="Написать рецензию..." 
+                required
+            >
+            <button type="submit" class="reviews__button base-button">Отправить</button>
+        </form>
+    <% } else { %>
+        <p style="color: #888; margin-bottom: 20px;">
+            <a href="/auth/login" style="color: #e50914; text-decoration: none; font-weight: bold;">Войдите</a>, чтобы оставить рецензию.
+        </p>
+    <% } %>
+
+    <div class="reviews-list">
+        <% if (typeof reviews !== 'undefined' && reviews.length > 0) { %>
+            <% reviews.forEach(review => { %>
+                <div class="review-item" style="margin-bottom: 20px; padding: 15px; background: #1a1a1a; border-radius: 8px; position: relative;">
+                    <div class="review-header" style="display: flex; align-items: center; margin-bottom: 10px; gap: 10px;">
+                        <div class="user-avatar" style="width: 30px; height: 30px; font-size: 14px; flex-shrink: 0;">
+                            <%= review.username ? review.username[0].toUpperCase() : '?' %>
+                        </div>
+                        
+                        <span style="color: #fff; font-weight: 600;">
+                            <%= review.username || 'Аноним' %>
+                        </span>
+
+                        <span style="color: #666; font-size: 0.8rem; margin-left: auto;">
+                            <%= new Date(review.created_at).toLocaleDateString('ru-RU') %>
+                        </span>
+
+                        <% if (user && user.id === review.user_id) { %>
+    <form action="/review/delete/<%= review.id %>" method="POST" style="margin-left: 10px; display: inline;">
+        <input type="hidden" name="movieId" value="<%= film.id %>">
+        
+        <button type="submit" 
+                onclick="return confirm('Удалить вашу рецензию?')" 
+                style="background: none; border: none; color: #ff4d4d; cursor: pointer; font-size: 1.4rem; line-height: 1; padding: 0 5px;">
+            &times;
+        </button>
+    </form>
+<% } %>
+                    </div>
+                    <p style="color: #ccc; line-height: 1.5; word-wrap: break-word; font-size: 1rem;">
+                        <%= review.content %>
+                    </p>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p style="color: #888; margin-top: 20px;">Пока никто не оставил отзыв. Будьте первым!</p>
+        <% } %>
+    </div>
+</section>
+
+    <%- include('partials/footer') %>
+
+
+    <script>
+  document.getElementById('addToFav').addEventListener('click', async function(e) {
+    e.preventDefault();
+    const movieId = this.getAttribute('data-id');
+    const favPath = document.getElementById('favPath');
+    const btn = this;
+
+    try {
+      const response = await fetch(`/movie/${movieId}/favorite`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        if (data.status === 'added') {
+          btn.classList.add('is-active');
+          favPath.setAttribute('fill', '#ff4d4d');
+          console.log('Добавлено в избранное');
+        } else if (data.status === 'removed') {
+          btn.classList.remove('is-active');
+          favPath.setAttribute('fill', 'white');
+          console.log('Удалено из избранного');
+        }
+      } else {
+        alert('Ошибка при обновлении избранного');
+      }
+    } catch (err) {
+      console.error('Ошибка сети:', err);
+    }
+  });
+
+  const modal = document.getElementById("trailerModal");
+const btn = document.getElementById("openTrailer");
+const span = document.querySelector(".close-modal");
+const player = document.getElementById("trailerPlayer");
+
+const videoId = "<%= trailerKey %>"; 
+
+if (btn && modal) {
+    btn.onclick = function() {
+        modal.style.display = "block";
+        player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    }
+}
+
+if (span) {
+    span.onclick = function() {
+        modal.style.display = "none";
+        player.src = ""; 
+    }
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        player.src = ""; 
+    }
+}
+</script>
+<script type="module" src="/js/module.js"></script>
+</body>
+</html>

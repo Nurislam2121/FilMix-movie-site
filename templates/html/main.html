@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Главная Страница</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/base.css" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo">
+        <a href="#">
+          <img class="logotype" src="../static/media/filmix-logo.png" alt="Логотип" />
+        </a>
+      </div>
+      <nav class="header__nav">
+        <ul class="nav-list">
+          <li><a href="#">Главная</a></li>
+          <li><a href="#">Избранное</a></li>
+          <li><a href="#">Фильмы</a></li>
+          <li><a href="#">Логин</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="heroBlock">
+        <div class="heroBlock__container">
+          <h1 class="heroBlock__title"></h1>
+          <h3 class="heroBlock__desc"></h3>
+          <button class="heroBlock__button base-button">Искать фильм</button>
+        </div>
+      </section>
+
+      <section class="popular-films">
+        <h2 class="popular-films__title">Популярные фильмы недели</h2>
+        <div class="popular-films__container film-carousel">
+          <article class="popular-films__card film-card">
+            <img src="../static/media/cardImage.jpg" alt="cardImage" />
+            <div class="popular-films__description film-description">
+              <h4 class="popular-films__title-film film-title">Uncharted</h4>
+              <div class="popular-films__date-category year-genre">
+                <p class="popular-films__date film-year">2025</p>
+                <p class="popular-films__category film-genre">Фантастика</p>
+              </div>
+              <button class="popular-films__btn base-button film-btn">
+                Подробнее
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="collections">
+        <h2 class="collections__title">Подборки</h2>
+
+        <section class="collection">
+          <h2 class="collection__title">Лучшие хоррор фильмы</h2>
+          <div class="collection__container film-carousel">
+            <article class="collection__card film-card">
+              <img src="../static/media/cardImage.jpg" alt="cardImage" />
+              <div class="collection__description film-description">
+                <h4 class="collection__title-film film-title">Uncharted</h4>
+                <div class="collection__date-category year-genre">
+                  <p class="collection__date film-year">2025</p>
+                  <p class="collection__category film-genre">Фантастика</p>
+                </div>
+                <button class="collection__btn base-button film-btn">
+                  Подробнее
+                </button>
+              </div>
+            </article>
+          </div>
+        </section>
+        <!-- <section class="collection">
+          <h2 class="collection__title">Лучшие фильмы 2023 года</h2>
+          <div class="collection__container film-carousel">
+            <article class="collection__card film-card">
+              <img src="../static/media/cardImage.jpg" alt="cardImage" />
+              <div class="collection__description film-description">
+                <h4 class="collection__title-film film-title">Uncharted</h4>
+                <div class="collection__date-category year-genre">
+                  <p class="collection__date film-year">2025</p>
+                  <p class="collection__category film-genre">Фантастика</p>
+                </div>
+                <button class="collection__btn base-button film-btn">
+                  Подробнее
+                </button>
+              </div>
+            </article>
+          </div>
+        </section> -->
+      </section>
+
+      <section class="info-banner">
+        <h2 class="info-banner__title">Наши преимущества</h2>
+        <div class="info-banner__container"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__logo">
+        <a href="#">
+          <img class="logotype" src="../static/media/filmix-logo.png" alt="Logotype" />
+        </a>
+      </div>
+      <nav class="footer__nav">
+        <ul class="nav-list">
+          <li>
+            <a class="social-link" href="#"><svg width="60" height="60" viewBox="0 0 60 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M42 18.9033L37.4919 42.4384C37.4919 42.4384 36.8611 44.0702 35.1283 43.2876L24.7269 35.0289L24.6786 35.0045C26.0836 33.6981 36.9786 23.554 37.4548 23.0942C38.1919 22.382 37.7343 21.9581 36.8784 22.496L20.7852 33.0795L14.5765 30.9161C14.5765 30.9161 13.5994 30.5562 13.5054 29.7737C13.4102 28.9898 14.6086 28.5658 14.6086 28.5658L39.9197 18.2834C39.9197 18.2834 42 17.3369 42 18.9033Z" fill="currentColor"/>
+</svg></a>
+          </li>
+          <li>
+            <a class="social-link" href="#"><svg width="60" height="60" viewBox="0 0 60 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M30 17.7108C33.9759 17.7108 34.5181 17.7108 36.1446 17.7108C37.5904 17.7108 38.3133 18.0723 38.8554 18.253C39.5783 18.6145 40.1205 18.7952 40.6627 19.3374C41.2048 19.8795 41.5663 20.4217 41.747 21.1446C41.9277 21.6867 42.1084 22.4096 42.2892 23.8554C42.2892 25.4819 42.2892 25.8434 42.2892 30C42.2892 34.1566 42.2892 34.5181 42.2892 36.1446C42.2892 37.5904 41.9277 38.3133 41.747 38.8554C41.3855 39.5783 41.2048 40.1205 40.6627 40.6627C40.1205 41.2048 39.5783 41.5663 38.8554 41.747C38.3133 41.9277 37.5904 42.1084 36.1446 42.2892C34.5181 42.2892 34.1566 42.2892 30 42.2892C25.8434 42.2892 25.4819 42.2892 23.8554 42.2892C22.4096 42.2892 21.6867 41.9277 21.1446 41.747C20.4217 41.3855 19.8795 41.2048 19.3374 40.6627C18.7952 40.1205 18.4337 39.5783 18.253 38.8554C18.0723 38.3133 17.8916 37.5904 17.7108 36.1446C17.7108 34.5181 17.7108 34.1566 17.7108 30C17.7108 25.8434 17.7108 25.4819 17.7108 23.8554C17.7108 22.4096 18.0723 21.6867 18.253 21.1446C18.6145 20.4217 18.7952 19.8795 19.3374 19.3374C19.8795 18.7952 20.4217 18.4337 21.1446 18.253C21.6867 18.0723 22.4096 17.8916 23.8554 17.7108C25.4819 17.7108 26.0241 17.7108 30 17.7108ZM30 15C25.8434 15 25.4819 15 23.8554 15C22.2289 15 21.1446 15.3614 20.241 15.7229C19.3374 16.0843 18.4337 16.6265 17.5301 17.5301C16.6265 18.4337 16.2651 19.1566 15.7229 20.241C15.3614 21.1446 15.1807 22.2289 15 23.8554C15 25.4819 15 26.0241 15 30C15 34.1566 15 34.5181 15 36.1446C15 37.7711 15.3614 38.8554 15.7229 39.759C16.0843 40.6627 16.6265 41.5663 17.5301 42.4699C18.4337 43.3735 19.1566 43.7349 20.241 44.2771C21.1446 44.6386 22.2289 44.8193 23.8554 45C25.4819 45 26.0241 45 30 45C33.9759 45 34.5181 45 36.1446 45C37.7711 45 38.8554 44.6386 39.759 44.2771C40.6627 43.9157 41.5663 43.3735 42.4699 42.4699C43.3735 41.5663 43.7349 40.8434 44.2771 39.759C44.6386 38.8554 44.8193 37.7711 45 36.1446C45 34.5181 45 33.9759 45 30C45 26.0241 45 25.4819 45 23.8554C45 22.2289 44.6386 21.1446 44.2771 20.241C43.9157 19.3374 43.3735 18.4337 42.4699 17.5301C41.5663 16.6265 40.8434 16.2651 39.759 15.7229C38.8554 15.3614 37.7711 15.1807 36.1446 15C34.5181 15 34.1566 15 30 15Z" fill="white"/>
+<path d="M30 22.2289C25.6627 22.2289 22.2289 25.6627 22.2289 30C22.2289 34.3374 25.6627 37.7711 30 37.7711C34.3374 37.7711 37.7711 34.3374 37.7711 30C37.7711 25.6627 34.3374 22.2289 30 22.2289ZM30 35.0602C27.2892 35.0602 24.9398 32.8916 24.9398 30C24.9398 27.2892 27.1084 24.9398 30 24.9398C32.7108 24.9398 35.0602 27.1084 35.0602 30C35.0602 32.7108 32.7108 35.0602 30 35.0602Z" fill="currentColor"/>
+<path d="M37.9518 23.8554C38.9499 23.8554 39.759 23.0463 39.759 22.0482C39.759 21.0501 38.9499 20.241 37.9518 20.241C36.9537 20.241 36.1446 21.0501 36.1446 22.0482C36.1446 23.0463 36.9537 23.8554 37.9518 23.8554Z" fill="white"/>
+</svg>
+</a>
+          </li>
+          <li>
+            <a class="social-link" href="#"><svg width="60" height="60" viewBox="0 0 60 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M32.4856 30.5472H38.0689L38.9455 24.8408H32.4845V21.722C32.4845 19.3515 33.2544 17.2494 35.4584 17.2494H39V12.2696C38.3777 12.1851 37.0617 12 34.5749 12C29.3823 12 26.338 14.7589 26.338 21.0446V24.8408H21V30.5472H26.338V46.2315C27.3952 46.3915 28.4659 46.5 29.5651 46.5C30.5587 46.5 31.5284 46.4086 32.4856 46.2784V30.5472Z" fill="currentColor"/>
+</svg>
+</a>
+          </li>
+          <li>
+            <a class="social-link" href="#"><svg width="60" height="60" viewBox="0 0 60 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M41.8902 18.0937C38.9268 15.1406 34.9756 13.5 30.8049 13.5C22.1341 13.5 15.1098 20.5 15.1098 29.1406C15.1098 31.875 15.878 34.6094 17.1951 36.9062L15 45L23.3415 42.8125C25.6463 44.0156 28.1707 44.6719 30.8049 44.6719C39.4756 44.6719 46.5 37.6719 46.5 29.0313C46.3902 24.9844 44.8537 21.0469 41.8902 18.0937ZM38.378 34.7187C38.0488 35.5937 36.5122 36.4687 35.7439 36.5781C35.0854 36.6875 34.2073 36.6875 33.3293 36.4688C32.7805 36.25 32.0122 36.0312 31.1341 35.5938C27.1829 33.9531 24.6585 30.0156 24.439 29.6875C24.2195 29.4687 22.7927 27.6094 22.7927 25.6406C22.7927 23.6719 23.7805 22.7969 24.1098 22.3594C24.439 21.9219 24.878 21.9219 25.2073 21.9219C25.4268 21.9219 25.7561 21.9219 25.9756 21.9219C26.1951 21.9219 26.5244 21.8125 26.8537 22.5781C27.1829 23.3437 27.9512 25.3125 28.061 25.4219C28.1707 25.6406 28.1707 25.8594 28.061 26.0781C27.9512 26.2969 27.8415 26.5156 27.6219 26.7344C27.4024 26.9531 27.1829 27.2812 27.0732 27.3906C26.8537 27.6094 26.6341 27.8281 26.8537 28.1562C27.0732 28.5937 27.8415 29.7969 29.0488 30.8906C30.5854 32.2031 31.7927 32.6406 32.2317 32.8594C32.6707 33.0781 32.8902 32.9687 33.1098 32.75C33.3293 32.5312 34.0976 31.6562 34.3171 31.2188C34.5366 30.7812 34.8659 30.8906 35.1951 31C35.5244 31.1094 37.5 32.0938 37.8293 32.3125C38.2683 32.5312 38.4878 32.6406 38.5976 32.75C38.7073 33.0781 38.7073 33.8437 38.378 34.7187Z" fill="currentColor"/>
+</svg>
+</a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+    <script type="module" src="../static/js/main.js"></script>
+  </body>
+</html>

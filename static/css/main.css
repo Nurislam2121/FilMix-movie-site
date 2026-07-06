@@ -1,0 +1,159 @@
+
+
+/* -------------------- HeroBlock Section ------------------------- */
+
+.heroBlock {
+  padding: 50px 150px;
+}
+
+.heroBlock__container {
+  position: relative;
+  height: 70vh;
+  padding: 60px 70px;
+  transition: background-image 0.5s ease;
+
+  /* background-image: url('../media/heroBlock1.jpg'); */
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.heroBlock__container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+}
+
+.heroBlock__container > * {
+  position: relative;
+  z-index: 2;
+}
+
+.heroBlock__desc {
+  width: 600px;
+}
+
+.heroBlock__button {
+  width: 300px;
+}
+
+.heroBlock--animate {
+  animation: slideIn 0.6s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(150px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* -------------------- Popular films Section ------------------------- */
+
+.popular-films {
+  padding: 20px 150px;
+}
+
+.popular-films__title {
+  text-align: center;
+}
+
+.popular-films__container {
+  padding-top: 50px;
+}
+
+/* .popular-films__card {
+    min-width: 228px;
+    max-width: 228px;
+    display: flex;
+    flex-direction: column;
+    background-color: #18191C;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.popular-films__card img{
+    width: 100%;
+    border-radius: 10px 10px;
+}
+
+.popular-films__date-category {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.popular-films__description {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+}
+
+.popular-films__btn {
+    border-radius: 50px;
+    padding: 10px 30px;
+} */
+
+/* ------------------ Collections section --------------------- */
+
+.collections {
+  padding: 0 150px;
+}
+
+.collections__title {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.collection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+/* ------------------ Info-banner section --------------------- */
+
+.info-banner {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 50px;
+  padding: 50px 150px;
+}
+
+.info-banner__title {
+}
+
+.info-banner__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.info-banner__card {
+  min-width: 250px;
+  min-height: 250px;
+  max-width: 250px;
+  max-height: 250px;
+  background-color: #1a1b1e;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.info-banner__desc {
+  padding-top: 30px;
+}
+

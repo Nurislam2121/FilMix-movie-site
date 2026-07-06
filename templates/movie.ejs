@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Фильмы — Filmix</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/movie.css" />
+  </head>
+  <body>
+    
+    <%- include('partials/header') %>
+
+    <section class="main-description">
+      <div class="main-description__text" id="text">
+        <h3>
+          Фильмы — это искусство, способное перенести зрителя в миры, полные эмоций и приключений. С момента своего появления в конце 19 века кино стало важной частью культуры и развлечений. Существует множество жанров фильмов, каждый из которых предлагает зрителям уникальный опыт. Среди самых популярных жанров можно выделить боевики, комедии, драмы, фантастику и ужасы.
+Киноиндустрия радует зрителей выходом на экраны разнообразных фильмов, как зарубежных, так и отечественных. Одной из самых обсуждаемых лент стала «Мастер и Маргарита», который снят по культовому роману Булгакова. Сюжет романа переплетает несколько линий: одну из них составляет история о приезде дьявола в Москву, а другую — о любви писателя Мастера и его возлюбленной Маргариты.
+Фильмы прошлых лет продолжают оставаться актуальными благодаря универсальным темам, глубоким персонажам и вечным вопросам, которые они поднимают. Вот несколько классических фильмов, которые сохраняют свою значимость и сегодня:
+- «8 миля»
+- «Тоня против всех»
+- «Достать ножи»
+        </h3>
+      </div>
+      <div class="toggle-btn" id="toggleBtn">Показать больше</div>
+    </section>
+
+    <section class="filters-section">
+      <form id="movie-filters-form" class="filters-form" action="/movie" method="GET">
+        
+        <div class="filters-block filters-block--search">
+          <h2 class="filters-block__title">Поиск</h2>
+          <div class="search-wrapper">
+            <input
+              type="text"
+              name="search"
+              class="search-input"
+              placeholder="Введите название фильма"
+              value="<%= filters.search || '' %>"
+            />
+            <button type="submit" class="btn btn--primary base-button">Искать</button>
+          </div>
+        </div>
+
+        <div class="filters-block filters-block--filter">
+          <h2 class="filters-block__title">Фильтр</h2>
+          <div class="filter-fields">
+            <div class="filter-field">
+              <input
+                type="text"
+                name="genre"
+                class="filter-input"
+                placeholder="Жанр (напр. Драма)"
+                value="<%= filters.genre || '' %>"
+              />
+            </div>
+
+            <div class="filter-field">
+              <input
+                type="text"
+                name="year"
+                class="filter-input"
+                placeholder="Год (напр. 2024)"
+                value="<%= filters.year || '' %>"
+              />
+            </div>
+
+            <div class="filter-field">
+              <input
+                type="text"
+                name="country"
+                class="filter-input"
+                placeholder="Страна"
+                value="<%= filters.country || '' %>"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="filters-block filters-block--bottom">
+          <div class="sort-wrapper">
+            <h2 class="filters-block__title">Сортировка</h2>
+            <div class="custom-select-wrapper">
+              <select name="sort" class="sort-select" id="sort-select" onchange="this.form.submit()">
+                <option value="newest" <%= filters.sort === 'newest' ? 'selected' : '' %>>Новинки</option>
+                <option value="rating-desc" <%= filters.sort === 'rating-desc' ? 'selected' : '' %>>Рейтинг ⬇</option>
+                <option value="title-asc" <%= filters.sort === 'title-asc' ? 'selected' : '' %>>Название (А-Я)</option>
+                <option value="year-desc" <%= filters.sort === 'year-desc' ? 'selected' : '' %>>Год ⬇</option>
+              </select>
+              <div class="custom-select-arrow"></div>
+            </div>
+          </div>
+
+          <a href="/movie" class="btn btn--reset base-button" style="text-decoration: none; text-align: center; line-height: 45px;">
+            Сбросить фильтр
+          </a>
+        </div>
+      </form>
+    </section>
+
+    <section class="all-movies">
+      <h2>Все Фильмы</h2>
+      <div class="all-movies__container film-container">
+        <% if (allMovies.length > 0) { %>
+          <% allMovies.forEach(movie => { %>
+            <article class="all-movies__card film-card">
+              <img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<%= movie.title %>" />
+              <div class="all-movies__description film-description">
+                <h4 class="all-movies__title-film film-title"><%= movie.title %></h4>
+                <div class="all-movies__date-category year-genre">
+                  <p class="all-movies__date film-year">
+                    <%= movie.release_date ? new Date(movie.release_date).getFullYear() : '' %>
+                  </p>
+                  <p class="all-movies__category film-genre"><%= movie.genres %></p>
+                </div>
+                <a href="/movie/<%= movie.id %>" class="all-movies__btn base-button film-btn" style="text-decoration: none; text-align: center;">
+                    Подробнее
+                </a>
+              </div>
+            </article>
+          <% }) %>
+        <% } else { %>
+          <p style="color: white; grid-column: 1/-1; text-align: center;">Ничего не найдено по вашему запросу</p>
+        <% } %>
+      </div>
+    </section>
+
+    <%- include('partials/footer') %>
+
+    <script type="module" src="/js/module.js"></script>
+    <script type="module" src="/js/movie.js"></script>
+    
+  </body>
+</html>

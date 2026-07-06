@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filmix — Главная Страница</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+
+    <%- include('partials/header') %>
+
+<main>
+    <section class="heroBlock">
+        <div class="heroBlock__container">
+            <h1 class="heroBlock__title">Мир кино в одном месте</h1>
+            <h3 class="heroBlock__desc">Смотри любимые фильмы и сериалы в лучшем качестве</h3>
+            <a href="/movie"><button class="heroBlock__button base-button">Искать фильм</button></a>
+        </div>
+    </section>
+
+    <section class="popular-films">
+        <h2 class="popular-films__title">Популярные фильмы недели</h2>
+        <div class="popular-films__container film-carousel">
+            <% if (popularFilms.length > 0) { %>
+                <% popularFilms.forEach(film => { %>
+                    <article class="popular-films__card film-card">
+                        <img src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>" alt="<%= film.title %>" />
+                        <div class="popular-films__description film-description">
+                            <h4 class="popular-films__title-film film-title"><%= film.title %></h4>
+                            <div class="popular-films__date-category year-genre">
+                                <p class="popular-films__date film-year"><%= new Date(film.release_date).getFullYear() %></p>
+                                <p class="popular-films__category film-genre"><%= film.genres %></p>
+                            </div>
+                            <a href="/movie/<%= film.id %>" class="popular-films__btn base-button film-btn">Подробнее</a>
+                        </div>
+                    </article>
+                <% }); %>
+            <% } else { %>
+                <p>Популярных фильмов пока нет.</p>
+            <% } %>
+        </div>
+    </section>
+
+    <section class="collections">
+        <h2 class="collections__title">Подборки</h2>
+        
+        <% collections.forEach(group => { %>
+            <section class="collection">
+                <h2 class="collection__title"><%= group.name %></h2>
+                <div class="collection__container film-carousel">
+                    <% if (group.movies && group.movies.length > 0) { %>
+                        <% group.movies.forEach(movie => { %>
+                            <article class="collection__card film-card">
+                                <img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<%= movie.title %>" />
+                                <div class="collection__description film-description">
+                                    <h4 class="collection__title-film film-title"><%= movie.title %></h4>
+                                    <div class="collection__date-category year-genre">
+                                        <p class="collection__date film-year"><%= new Date(movie.release_date).getFullYear() %></p>
+                                        <p class="collection__category film-genre"><%= movie.genres %></p>
+                                    </div>
+                                    <a href="/movie/<%= movie.id %>" class="collection__btn base-button film-btn">Подробнее</a>
+                                </div>
+                            </article>
+                        <% }); %>
+                    <% } else { %>
+                        <p>В этой подборке пока нет фильмов.</p>
+                    <% } %>
+                </div>
+            </section>
+        <% }); %>
+    </section>
+
+    <section class="info-banner">
+        <h2 class="info-banner__title">Наши преимущества</h2>
+        <div class="info-banner__container">
+            </div>
+    </section>
+</main>
+
+<%- include('partials/footer') %>
+
+    <script type="" src="/js/main.js"></script>
+    <script type="module" src="/js/module.js"></script>
+</body>
+</html>
